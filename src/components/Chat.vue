@@ -88,7 +88,6 @@ const sendMessage = (e) => {
 
 .messageArea {
   height: calc(100% - 48px);
-  overflow: auto;
 }
 
 .message {

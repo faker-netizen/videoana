@@ -27,6 +27,7 @@ const getTree = (p) => {
     </div>
     <div class="element">
       <Media @send-tree-data="getTree" />
+
     </div>
     <div class="element">
       <Chat/>

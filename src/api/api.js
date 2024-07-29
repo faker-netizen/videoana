@@ -4,7 +4,7 @@ import request from '@/utils/request'
 // 用户登录
 export function getVideoInfo(data) {
   return request({
-    url: '/openschool/text',
+    url: '/openschool/getVideoInfo',
     // /api/openschool/getVideoInfo'
     method: 'get',
     params:data

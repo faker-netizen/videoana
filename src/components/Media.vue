@@ -19,7 +19,6 @@
         <source :src="videoUrl" type="video/mp4"/>
       </video>
     </div>
-    <el-button @click="jumpTime(10)">跳转到第十秒</el-button>
     <!--    用这个版本-->
     <el-steps align-center class="steps" style="max-width: 600px" v-if="autoChapters!=null">
       <el-step v-for="(sentence, index) in autoChapters.AutoChapters" :key="sentence.Id"
@@ -33,13 +32,13 @@
 import {ElButton, ElMessage} from 'element-plus'
 import {computed, onMounted, reactive, ref, watch} from "vue";
 import {generateRandomFileName, ossClient} from "@/utils/oss";
-import {Plus} from "@element-plus/icons-vue";
 import 'video.js/dist/video-js.css'
 import videojs from 'video.js';
 import {useStore} from 'vuex';
 import {getVideoInfo, chatLogin} from "@/api/api"
-let videoPlayer  = ref<any>(null)
-let player:any=null
+
+let videoPlayer = ref<any>(null)
+let player: any = null
 const store = useStore()
 const currentTime = ref(0) // 引用 video-player 组件
 
@@ -60,7 +59,7 @@ const handleTimeUpdate = () => {
 
 const fastForwardTo = (seconds: any) => {
   currentTime.value = seconds / 1000
-  jumpTime(seconds/1000)
+  jumpTime(seconds / 1000)
   ElMessage.success("跳转成功")
 };
 // 章节速览
@@ -68,13 +67,14 @@ let autoChapters = computed(() => (store.state.autoCaptures))
 let tag = ref("上传视频后即可观看视频")
 const emit = defineEmits(['sendTreeData', 'updateFileList'])
 let fileList = ref()
-let videoUrl = ref('')
+let videoUrl = ref('https://onbotics-map-img.oss-cn-shanghai.aliyuncs.com/uploads/20240726/o146vuevg8fzj4hoac6jv.mp4')
 let buttonLoading = ref(false)
 let loading = ref(true)
 let loadingOption = ref({
   spinner: 'el-icon-loading',
   background: 'rgba(0, 0, 0, 0.8)'
 })
+
 function beforeUpload(file: any) {
   return true
 }
@@ -121,8 +121,8 @@ const emitTreeData = () => {
   console.log(1)
   emit('sendTreeData', 12)
 }
-const jumpTime = (time:number) => {
-  if (player){
+const jumpTime = (time: number) => {
+  if (player) {
     player.currentTime(time)
   }
 }
