@@ -17,8 +17,11 @@
           change="sendMessage"
           v-model="sendData"
           clearable
-          style="width:calc(100% - 90px);max-height: 200px "
+          style="width:calc(100% - 90px);max-height: 200px;margin-right: 6px;"
           :rows="3"
+          :autosize="{ minRows: 2, maxRows: 4 }"
+          :draggable="false"
+          resize="none"
           type="textarea"
           placeholder="Please input"
       />
@@ -83,6 +86,7 @@ const sendMessage = (e) => {
 .send {
   flex: 1;
   display: flex;
+  height: 48px;
   flex-direction: row;
 }
 
