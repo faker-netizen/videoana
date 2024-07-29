@@ -1,12 +1,6 @@
 <template>
   <div class="mediaMain">
-    <!--    <el-button @click="test">11</el-button>-->
 
-    <!--    <el-button type="primary" @click="emitTreeData">获取data</el-button>-->
-    <!--    <el-tag type="primary" class="tag">-->
-    <!--      点击下方+添加照片，照片个数不少于2张，不大于5张-->
-    <!--    </el-tag>-->
-    <!--      <RouterLink to="/about">Home</RouterLink>-->
     <el-upload action="#" :before-upload="beforeUpload" :http-request="handleUpload" type="file" accept=".mp4">
       <el-button type="primary" color="#06b79a" :loading="buttonLoading">上传视频</el-button>
     </el-upload>
@@ -40,7 +34,6 @@ import {ElButton, ElMessage} from 'element-plus'
 import {computed, onMounted, reactive, ref, watch} from "vue";
 import {generateRandomFileName, ossClient} from "@/utils/oss";
 import {Plus} from "@element-plus/icons-vue";
-import VueVideoPlayer, {VideoPlayer} from '@videojs-player/vue'
 import 'video.js/dist/video-js.css'
 import videojs from 'video.js';
 import {useStore} from 'vuex';
@@ -67,14 +60,15 @@ const handleTimeUpdate = () => {
 
 const fastForwardTo = (seconds: any) => {
   currentTime.value = seconds / 1000
-  console.log(currentTime.value)
+  jumpTime(seconds/1000)
+  ElMessage.success("跳转成功")
 };
 // 章节速览
 let autoChapters = computed(() => (store.state.autoCaptures))
 let tag = ref("上传视频后即可观看视频")
 const emit = defineEmits(['sendTreeData', 'updateFileList'])
 let fileList = ref()
-let videoUrl = ref('https://onbotics-map-img.oss-cn-shanghai.aliyuncs.com/uploads/20240726/o146vuevg8fzj4hoac6jv.mp4')
+let videoUrl = ref('')
 let buttonLoading = ref(false)
 let loading = ref(true)
 let loadingOption = ref({
