@@ -1,0 +1,77 @@
+{
+//  "files": [
+//  ],
+//  "references": [
+//    {
+//      "path": "./tsconfig.node.json"
+//    },
+//    {
+//      "path": "./tsconfig.app.json"
+//    }
+//  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "#/*": [
+        "types/*"
+      ],
+      "/#/*": [
+        "types/*"
+      ],
+      "@build/*": [
+        "build/*"
+      ]
+    },
+    "types": [
+      "node",
+      "vite/client",
+      "element-plus/global"
+    ],
+    "module.exports": {
+      "*": {
+        "export const ref: any": "*",
+        "export const reactive: any": "*"
+      }
+    }
+  },
+  "target": "es2016",
+  "module": "commonjs",
+  "baseUrl": "./",
+
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/*.d.ts",
+    "vite.config.ts",
+    "/types/*.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "**/*.js",
+    "node_modules"
+  ],
+  "typeRoots": [
+    "./types",
+    "./node_modules/@types"
+  ]
+}
